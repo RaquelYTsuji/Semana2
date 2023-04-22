@@ -1,6 +1,7 @@
 package com.semana2.Semana2.controllers;
 
 import com.semana2.Semana2.models.Professor;
+import com.semana2.Semana2.models.StatusProfessor;
 import com.semana2.Semana2.repositories.ProfessorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,9 @@ public class ProfessorController {
     }
 
     @GetMapping("/professor/new")
-    public String nnew(){
-        return "professores/new";
+    public ModelAndView nnew(){
+        ModelAndView mv = new ModelAndView("professores/new");
+        mv.addObject("statusProfessor", StatusProfessor.values());
+        return mv;
     }
 }
