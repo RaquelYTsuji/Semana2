@@ -1,0 +1,63 @@
+<!DOCTYPE html SYSTEM "https://www.thymeleaf.org/dtd/xhtml1-strivt-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lista de Professores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+    <br>
+    <div class="container">
+      <div class="row">
+        <h1>Lista de Professores</h1>
+        <hr>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <table class="table table-hover">
+            <thread>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Salário</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr>
+            </thread>
+
+            <tbody>
+              <tr>
+                <th class="col-1" scope="row">1</th>
+                <td class="col-4">Batman</td>
+                <td class="col-2">R$ 5000.0</td>
+                <td class="col-2">ATIVO</td>
+                <td class="col-1"><a href="#">Detalhes</a></td>
+                <td class="col-1"><a href="#">Editar</a></td>
+                <td class="col-1"><a href="#">Deletar</a></td>
+              </tr>
+
+              <tr>
+                <th class="col-1" scope="row">2</th>
+                <td class="col-4">Coringa</td>
+                <td class="col-2">R$ 10000.0</td>
+                <td class="col-2">APOSENTADO</td>
+                <td class="col-1"><a href="#">Detalhes</a></td>
+                <td class="col-1"><a href="#">Editar</a></td>
+                <td class="col-1"><a href="#">Deletar</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <a href="#">Novo Professor</a>
+      </div>
+    </div>
+</body>
+</html>
