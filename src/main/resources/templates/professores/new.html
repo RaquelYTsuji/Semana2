@@ -39,7 +39,7 @@
               <option value="ATIVO">APOSENTADO</option>
               <option value="ATIVO">AFASTADO</option>-->
 
-                <option th:each="status : ${T(com.semana2.Semana2.models.StatusProfessor).values()}"
+                <option th:each="status : ${statusProfessor}"
                       th:value="${status}" th:text="${status}"></option>
             </select>
           </div>
