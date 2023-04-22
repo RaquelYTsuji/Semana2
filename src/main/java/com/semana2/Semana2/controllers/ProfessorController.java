@@ -24,4 +24,9 @@ public class ProfessorController {
         mv.addObject("professores", professores);
         return mv;
     }
+
+    @GetMapping("/professor/new")
+    public String nnew(){
+        return "professores/new";
+    }
 }
