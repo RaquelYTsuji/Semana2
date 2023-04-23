@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public class RequisicaoNovoProfessor {
+public class RequisicaoFormProfessor {
     @NotBlank
     @NotNull
     private String nome;
@@ -45,6 +45,12 @@ public class RequisicaoNovoProfessor {
         professor.setStatusProfessor(this.statusProfessor);
 
         return professor;
+    }
+
+    public void fromProfessor(Professor professor){
+        this.nome = professor.getNome();
+        this.salario = professor.getSalario();
+        this.statusProfessor = professor.getStatusProfessor();
     }
 
     @Override
