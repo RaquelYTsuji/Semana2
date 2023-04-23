@@ -7,37 +7,6 @@
         crossorigin="anonymous"></script>
 
 <header th:replace="~{fragmentos :: header('Editar Professor #' + ${professorID})}"></header>
-
-    <div class="container">
-      <div class="row">
-        <form th:object="${requisicaoFormProfessor}" th:action="@{/professores/{professorId}(professorId = ${professorID})}" method="post">
-          <div class="mb-3">
-            <label class="form-label">Nome</label>
-            <input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{nome}">
-            <div class="invalid-feedback" th:errors="*{nome}"></div>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Salário</label>
-            <input class="form-control" th:errorclass="is-invalid" type="text" th:field="*{salario}">
-              <div class="invalid-feedback" th:errors="*{salario}"></div>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Status</label>
-            <select class="form-select" th:field="*{statusProfessor}">
-              <!--<option value="ATIVO">ATIVO</option>
-              <option value="ATIVO">INATIVO</option>
-              <option value="ATIVO">APOSENTADO</option>
-              <option value="ATIVO">AFASTADO</option>-->
-
-                <option th:each="status : ${listaStatusProfessor}"
-                      th:value="${status}" th:text="${status}"></option>
-            </select>
-          </div>
-          <button class="btn btn-primary" type="submit">Submeter</button>
-          <a href="javascript:history.back()">Voltar</a>
-        </form>
-      </div>
-    </div>
-</div>
+<div th:replace="~{professores/fragmentos :: form(requisicaoFormProfessor, '/professores/' + ${professorID})}">Formulário</div>
 </body>
 </html>
