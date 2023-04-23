@@ -2,11 +2,18 @@ package com.semana2.Semana2.dto;
 
 import com.semana2.Semana2.models.Professor;
 import com.semana2.Semana2.models.StatusProfessor;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
 public class RequisicaoNovoProfessor {
+    @NotBlank
+    @NotNull
     private String nome;
+    @NotNull
+    @DecimalMin("0.0")
     private BigDecimal salario;
     private StatusProfessor statusProfessor;
 
