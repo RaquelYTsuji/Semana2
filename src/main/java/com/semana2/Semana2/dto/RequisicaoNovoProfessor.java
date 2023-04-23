@@ -1,35 +1,14 @@
-package com.semana2.Semana2.models;
+package com.semana2.Semana2.dto;
 
-import jakarta.persistence.*;
+import com.semana2.Semana2.models.Professor;
+import com.semana2.Semana2.models.StatusProfessor;
+
 import java.math.BigDecimal;
 
-@Entity
-public class Professor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(nullable = false)
+public class RequisicaoNovoProfessor {
     private String nome;
     private BigDecimal salario;
-    @Enumerated(EnumType.STRING)
     private StatusProfessor statusProfessor;
-
-    public Professor() {
-
-    }
-
-    public Professor(String nome, BigDecimal salario, StatusProfessor statusProfessor) {
-        this.nome = nome;
-        this.salario = salario;
-        this.statusProfessor = statusProfessor;
-    }
-
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getNome() {
         return nome;
@@ -52,11 +31,19 @@ public class Professor {
         this.statusProfessor = statusProfessor;
     }
 
+    public Professor toProfessor(){
+        Professor professor = new Professor();
+        professor.setNome(this.nome);
+        professor.setSalario(this.salario);
+        professor.setStatusProfessor(this.statusProfessor);
+
+        return professor;
+    }
+
     @Override
     public String toString() {
-        return "Professor{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
+        return "RequisicaoNovoProfessor{" +
+                "nome='" + nome + '\'' +
                 ", salario=" + salario +
                 ", statusProfessor=" + statusProfessor +
                 '}';
