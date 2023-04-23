@@ -4,11 +4,13 @@ import com.semana2.Semana2.dto.RequisicaoNovoProfessor;
 import com.semana2.Semana2.models.Professor;
 import com.semana2.Semana2.models.StatusProfessor;
 import com.semana2.Semana2.repositories.ProfessorRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
@@ -49,5 +51,11 @@ public class ProfessorController {
             this.professorRepository.save(professor);
             return new ModelAndView("redirect:/professores");
         }
+    }
+
+    @ModelAttribute("servletPath")
+    String getRequestServletPath(HttpServletRequest request) {
+        System.out.println(request.getServletPath());
+        return request.getServletPath();
     }
 }
