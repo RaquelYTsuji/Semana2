@@ -83,6 +83,30 @@ public class ProfessorController {
         }
     }
 
+    @PostMapping("/professores/{id}")
+    public ModelAndView update(@PathVariable Long id, @Valid RequisicaoFormProfessor requisicao, BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            System.out.println("\n*************** TEM ERROS ****************\n");
+            ModelAndView mv = new ModelAndView("professores/edit");
+            mv.addObject("listaStatusProfessor", StatusProfessor.values());
+            return mv;
+        }else{
+            Optional<Professor> optional = this.professorRepository.findById(id);
+            if (optional.isPresent()){
+                Professor professor = requisicao.toProfessor(optional.get());
+                this.professorRepository.save(professor);
+
+//                professor.setNome(requisicao.getNome());
+//                professor.setSalario(requisicao.getSalario());
+//                professor.setStatusProfessor(requisicao.getStatusProfessor());
+                return new ModelAndView("redirect:/professores/" + professor.getId());
+            }else{
+                System.out.println("########## Não achou o professor de ID: " +id+ "##########");
+                return new ModelAndView("redirect:/professores");
+            }
+        }
+    }
+
     @ModelAttribute("servletPath")
     String getRequestServletPath(HttpServletRequest request) {
         return request.getServletPath();
