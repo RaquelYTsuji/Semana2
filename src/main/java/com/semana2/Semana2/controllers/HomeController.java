@@ -14,7 +14,6 @@ public class HomeController {
 
     @ModelAttribute("servletPath")
     String getRequestServletPath(HttpServletRequest request) {
-        System.out.println(request.getServletPath());
         return request.getServletPath();
     }
 }
