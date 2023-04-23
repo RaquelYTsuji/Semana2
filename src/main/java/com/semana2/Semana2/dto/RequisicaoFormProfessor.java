@@ -16,6 +16,7 @@ public class RequisicaoFormProfessor {
     @DecimalMin("0.0")
     private BigDecimal salario;
     private StatusProfessor statusProfessor;
+    private Long id;
 
     public String getNome() {
         return nome;
@@ -40,6 +41,15 @@ public class RequisicaoFormProfessor {
 
     public Professor toProfessor(){
         Professor professor = new Professor();
+        professor.setNome(this.nome);
+        professor.setSalario(this.salario);
+        professor.setStatusProfessor(this.statusProfessor);
+
+        return professor;
+    }
+
+    public Professor toProfessor(Professor professor){
+        professor.getId();
         professor.setNome(this.nome);
         professor.setSalario(this.salario);
         professor.setStatusProfessor(this.statusProfessor);
