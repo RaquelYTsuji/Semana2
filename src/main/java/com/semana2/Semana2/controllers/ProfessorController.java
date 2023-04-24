@@ -64,7 +64,7 @@ public class ProfessorController {
             return mv;
         }else{
             System.out.println("$$$$$$$$$$ Não achou o professor de ID: " +id+ "$$$$$$$$$$$$$");
-            return new ModelAndView("redirect:/professores");
+            return this.retornaErroProfessor("SHOW ERROR: Professor #" + id + " nao encontrado no banco");
         }
     }
 
@@ -80,7 +80,7 @@ public class ProfessorController {
             return mv;
         }else{
             System.out.println("$$$$$$$$$$ Não achou o professor de ID: " +id+ "$$$$$$$$$$$$$");
-            return new ModelAndView("redirect:/professores");
+            return this.retornaErroProfessor("EDIT ERROR: Professor #" + id + " nao encontrado no banco");
         }
     }
 
@@ -103,20 +103,31 @@ public class ProfessorController {
                 return new ModelAndView("redirect:/professores/" + professor.getId());
             }else{
                 System.out.println("########## Não achou o professor de ID: " +id+ "##########");
-                return new ModelAndView("redirect:/professores");
+                return this.retornaErroProfessor("UPDATE ERROR: Professor #" + id + " nao encontrado no banco");
             }
         }
     }
 
     @GetMapping("/professores/{id}/delete")
-    public String delete(@PathVariable Long id){
+    public ModelAndView delete(@PathVariable Long id){
+        ModelAndView mv = new ModelAndView("redirect:/professores");
+
         try{
             this.professorRepository.deleteById(id);
-            return "redirect:/professores";
+            mv.addObject("mensagem", "Professor #" + id + " deletado com sucesso");
+            mv.addObject("erro", false);
         }catch (EmptyResultDataAccessException e){
+            mv = this.retornaErroProfessor("DELETE ERROR: Professor #" + id + " nao encontrado no banco");
             System.out.println(e);
-            return "redirect:/professores";
         }
+        return mv;
+    }
+
+    private ModelAndView retornaErroProfessor(String msg){
+        ModelAndView mv = new ModelAndView("redirect:/professores");
+        mv.addObject("mensagem", msg);
+        mv.addObject("erro", true);
+        return mv;
     }
 
     @ModelAttribute("servletPath")
