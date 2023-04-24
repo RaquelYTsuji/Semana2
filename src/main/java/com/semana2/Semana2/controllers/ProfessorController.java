@@ -7,6 +7,7 @@ import com.semana2.Semana2.repositories.ProfessorRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -104,6 +105,17 @@ public class ProfessorController {
                 System.out.println("########## Não achou o professor de ID: " +id+ "##########");
                 return new ModelAndView("redirect:/professores");
             }
+        }
+    }
+
+    @GetMapping("/professores/{id}/delete")
+    public String delete(@PathVariable Long id){
+        try{
+            this.professorRepository.deleteById(id);
+            return "redirect:/professores";
+        }catch (EmptyResultDataAccessException e){
+            System.out.println(e);
+            return "redirect:/professores";
         }
     }
 
